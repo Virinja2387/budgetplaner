@@ -144,7 +144,7 @@
 <body>
 <header>
   <h1>Budgetplaner</h1>
-  <div class="month-nav"><b id="monthLabel">Juli 2026</b></div>
+  <div class="month-nav"><b id="monthLabel">Juli 2026</b><span style="font-size:.6rem;opacity:.5">v1.7</span></div>
 </header>
 
 <main>
@@ -247,7 +247,7 @@
 
 <dialog id="dlgImport">
   <h3>Import-Code einfügen</h3>
-  <p>Kontoauszug-Screenshot bei Claude hochladen, den Import-Code kopieren und hier einfügen. Bestehende Daten bleiben erhalten – die Beträge werden zu den Ist-Werten addiert.</p>
+  <p>Zwei Möglichkeiten: <b>Import-Code von Claude</b> einfügen (Beträge werden zu den Ist-Werten addiert) – oder ein <b>komplettes Backup als Text</b> einfügen (ersetzt alle Daten).</p>
   <textarea id="importCodeArea" placeholder='{"typ":"ist-update","eintraege":[["Miete",574]]}'></textarea>
   <div class="btnrow" style="margin-top:10px">
     <button class="btn ghost" onclick="document.getElementById('dlgImport').close()">Abbrechen</button>
@@ -475,6 +475,12 @@ function applyImportCode(){
   const txt=document.getElementById('importCodeArea').value.trim();
   try{
     const data=JSON.parse(txt);
+    if(data&&data.schema>=1&&data.schema<=7&&Array.isArray(data.einnahmen)){
+      S=migrate(data); save(); render();
+      document.getElementById('dlgImport').close();
+      toast('Komplettes Backup übernommen ✓');
+      return;
+    }
     if(data.typ!=='ist-update'||!Array.isArray(data.eintraege)) throw 0;
     let hits=0, misses=[];
     data.eintraege.forEach(([name,betrag])=>{
