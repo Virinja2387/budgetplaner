@@ -23,61 +23,77 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     max-width:480px; margin:0 auto; min-height:100vh; padding-bottom:76px; }
 
-  header{ padding:18px 18px 8px; display:flex; align-items:center; justify-content:space-between; }
-  header h1{ font-family:var(--num); font-size:1.3rem; font-weight:600; margin:0; letter-spacing:.01em; }
-  .month-nav{ display:flex; align-items:center; gap:10px; font-size:.85rem; color:var(--muted); }
+  header{ padding:18px 18px 8px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  header h1{ font-family:var(--num); font-size:1.3rem; font-weight:600; margin:0; }
+  .month-nav{ display:flex; align-items:center; gap:8px; font-size:.85rem; color:var(--muted); }
   .month-nav b{ color:var(--ink); font-weight:600; }
+  .helpbtn{ width:26px; height:26px; border-radius:50%; border:1px solid var(--line); background:var(--surface);
+    color:var(--accent); font-weight:800; font-size:.85rem; cursor:pointer; flex:none; }
 
   main{ padding:0 14px; display:flex; flex-direction:column; gap:10px; }
   .hidden{ display:none !important; }
-
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:13px 15px; }
   .label{ font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:10px 4px 2px; }
-  .kpi-label{ font-size:.72rem; color:var(--muted); margin-bottom:3px; }
-  .kpi{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.45rem; font-weight:600; }
-  .kpi small{ font-size:.85rem; color:var(--muted); font-weight:400; }
-  .kpi.gold{ color:var(--accent); }
+  .num{ font-family:var(--num); font-variant-numeric:tabular-nums; }
   .hint{ font-size:.68rem; color:var(--muted); margin-top:3px; line-height:1.4; }
+  .good{ color:var(--good); } .bad{ color:var(--bad); } .gold{ color:var(--accent); }
 
-  /* Verteilungsbalken */
-  .dist{ display:flex; height:14px; border-radius:99px; overflow:hidden; margin:10px 0 8px; background:var(--track); }
-  .dist span{ height:100%; }
-  .legend{ display:flex; flex-wrap:wrap; gap:8px 14px; font-size:.68rem; color:var(--muted); }
-  .legend i{ display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; }
+  /* KPI-Kacheln (Layout A) */
+  .kpi3{ display:flex; gap:8px; }
+  .kpi3 .card{ flex:1; padding:11px 12px; }
+  .kpi3 .t{ font-size:.62rem; color:var(--muted); margin-bottom:3px; }
+  .kpi3 .v{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.02rem; font-weight:700; }
+  .kpi3 .card.hl{ border-color:var(--accent); }
+  .kpi3 .card.hl .v{ color:var(--accent); }
 
-  /* Zeilen */
-  .row{ display:flex; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid var(--track); }
-  .row:last-child{ border-bottom:none; }
-  .row .name{ flex:1; font-size:.85rem; font-weight:500; min-width:0; }
-  .row .name small{ display:block; font-size:.65rem; color:var(--muted); font-weight:400; }
-  .row input{ width:70px; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
-    border-radius:8px; padding:7px 6px; font-size:.82rem; text-align:right;
-    font-family:var(--num); font-variant-numeric:tabular-nums; }
-  .row input:focus{ outline:2px solid var(--accent); border-color:transparent; }
-  .row input.soll{ opacity:.65; width:60px; }
-  .col-head{ display:flex; gap:8px; justify-content:flex-end; font-size:.6rem; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--muted); padding:2px 2px 6px; }
-  .col-head span{ width:70px; text-align:center; }
-  .col-head span.s{ width:60px; }
-  .rest-col{ width:70px; flex:none; text-align:right; font-family:var(--num); font-variant-numeric:tabular-nums;
-    font-size:.78rem; font-weight:700; color:var(--good); }
-  .rest-col.bad{ color:var(--bad); }
-  .rest-col small{ display:block; font-size:.55rem; font-weight:400; color:var(--muted); letter-spacing:.06em; }
-  .minibar{ height:7px; border-radius:99px; background:var(--track); margin-top:7px; overflow:hidden; }
-  .minibar i{ display:block; height:100%; background:linear-gradient(90deg,#B8934F,#E2C284); border-radius:inherit; }
-  .minibar i.g{ background:linear-gradient(90deg,#6AAE88,#9AD4B4); } .minibar i.w{ background:var(--warn); } .minibar i.x{ background:linear-gradient(90deg,#C4705F,#E09A8B); }
-  .restline{ font-size:.64rem; margin-top:4px; color:var(--muted); }
-  .restline.bad{ color:var(--bad); font-weight:700; }
-  .donut{ flex:none; }
+  /* Ring-Reihe (Layout A) */
+  .ringrow{ display:flex; gap:8px; }
+  .ringrow .card{ flex:1; text-align:center; padding:10px 6px; cursor:pointer; }
+  .ringrow svg{ display:block; margin:0 auto 4px; }
+  .ringrow .rt{ font-size:.64rem; color:var(--muted); }
+  .ringrow .rv{ font-size:.7rem; font-weight:700; margin-top:2px; }
 
-  details.group{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:0 15px; }
-  details.group summary{ list-style:none; cursor:pointer; padding:13px 0; display:flex; justify-content:space-between; align-items:center; gap:8px; }
-  details.group summary::-webkit-details-marker{ display:none; }
-  details.group summary .name{ font-size:.88rem; font-weight:600; }
-  details.group summary .sum{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:.85rem; color:var(--muted); }
-  details.group summary .chev{ color:var(--accent); transition:transform .2s; font-size:.8rem; }
-  details.group[open] summary .chev{ transform:rotate(90deg); }
-  details.group .inner{ padding-bottom:10px; }
+  /* Gruppen */
+  details.grp{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  details.grp summary{ list-style:none; display:flex; align-items:center; gap:10px; padding:12px 15px; cursor:pointer; }
+  details.grp summary::-webkit-details-marker{ display:none; }
+  details.grp summary .gname{ flex:1; font-size:.88rem; font-weight:600; }
+  details.grp summary .gsum{ font-size:.78rem; color:var(--muted); }
+  .chev{ color:var(--accent); font-size:.75rem; transition:transform .2s; }
+  details.grp[open] summary .chev{ transform:rotate(90deg); }
+  .rows{ border-top:1px solid var(--track); padding:2px 15px 6px; }
+
+  /* Kategorie-Zeilen */
+  .krow{ padding:10px 0 2px; border-bottom:1px solid var(--track); }
+  .krow:last-child{ border-bottom:none; }
+  .krow .top{ display:flex; align-items:baseline; gap:8px; cursor:pointer; }
+  .krow .kname{ flex:1; font-size:.85rem; font-weight:500; min-width:0; }
+  .krow .kname .chev{ font-size:.65rem; }
+  .krow .kwert{ font-size:.78rem; color:var(--muted); white-space:nowrap; }
+  .krow .kwert b{ color:var(--ink); }
+  .krow .kwert .rst{ font-weight:700; }
+  .underline{ height:4px; border-radius:99px; background:var(--track); margin:7px 0 8px; overflow:hidden; }
+  .underline i{ display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#B8934F,#E2C284); }
+  .underline i.x{ background:linear-gradient(90deg,#C4705F,#E09A8B); }
+  .underline i.g{ background:linear-gradient(90deg,#6AAE88,#9AD4B4); }
+
+  /* Einzelbuchungen */
+  .bux{ margin:0 0 10px; border-left:2px solid var(--line); padding-left:10px; display:flex; flex-direction:column; gap:6px; }
+  .bu{ display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:.76rem; color:var(--muted); }
+  .bu b{ color:var(--ink); font-weight:500; }
+  .bu .del{ color:var(--bad); background:none; border:none; font-size:.9rem; padding:0 4px; cursor:pointer; }
+  .bu-add{ display:flex; gap:6px; margin-top:2px; }
+  .bu-add input{ background:var(--surface2); border:1px solid var(--line); color:var(--ink);
+    border-radius:8px; padding:7px 8px; font-size:.76rem; min-width:0; }
+  .bu-add input.t{ flex:1; } .bu-add input.v{ width:70px; text-align:right; font-family:var(--num); }
+  .bu-add button{ background:var(--accent); color:var(--accent-ink); border:none; border-radius:8px;
+    padding:0 13px; font-weight:800; font-size:1rem; cursor:pointer; }
+  .soll-edit{ display:flex; align-items:center; gap:8px; font-size:.72rem; color:var(--muted); margin:0 0 10px; padding-left:12px; }
+  .soll-edit input{ width:80px; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
+    border-radius:8px; padding:6px 8px; font-size:.78rem; text-align:right; font-family:var(--num); }
+  .addcat{ display:block; width:calc(100% - 30px); margin:4px 15px 12px; padding:9px; text-align:center;
+    background:transparent; border:1px dashed var(--line); border-radius:10px; color:var(--accent);
+    font-size:.76rem; font-weight:600; cursor:pointer; }
 
   .banner{ display:flex; gap:10px; align-items:flex-start; background:var(--surface2);
     border:1px dashed var(--line); border-radius:var(--radius); padding:11px 13px; font-size:.76rem; line-height:1.45; }
@@ -95,13 +111,16 @@
 
   /* Vermögen */
   .tiles{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .tile .kpi{ font-size:1.05rem; }
-  .tile .kpi-label{ display:flex; justify-content:space-between; }
+  .tile .kpi-label{ display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); }
   .tile input{ width:100%; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
     border-radius:8px; padding:7px 8px; font-size:.95rem; text-align:right; margin-top:4px;
     font-family:var(--num); font-variant-numeric:tabular-nums; }
   .tile .tag{ font-size:.6rem; color:var(--muted); }
   .total-card{ border-color:var(--accent); }
+  .kpi{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.45rem; font-weight:600; }
+  .kpi small{ font-size:.85rem; color:var(--muted); font-weight:400; }
+  .kpi.gold{ color:var(--accent); }
+  .kpi-label{ font-size:.72rem; color:var(--muted); margin-bottom:3px; }
 
   /* Ziele */
   .goal .top{ display:flex; justify-content:space-between; align-items:baseline; }
@@ -112,83 +131,88 @@
   .goal .pct{ font-size:.7rem; color:var(--accent); font-weight:700; margin-top:5px; }
   .due{ font-size:.7rem; margin-top:5px; }
   .due.ok{ color:var(--good); } .due.warn{ color:var(--warn); }
+  .goal input{ width:90px; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
+    border-radius:8px; padding:6px 8px; text-align:right; margin-top:6px; font-family:var(--num); }
 
   /* Verlauf */
-  .hist .row .name b{ font-family:var(--num); }
-  .hist-nums{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:.78rem; color:var(--muted); text-align:right; }
+  .hist .hrow{ display:flex; justify-content:space-between; gap:8px; padding:9px 0; border-bottom:1px solid var(--track); font-size:.8rem; }
+  .hist .hrow:last-child{ border:none; }
+  .hist-nums{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:.76rem; color:var(--muted); text-align:right; }
   .hist-nums b{ color:var(--good); }
+  .settings-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-bottom:1px solid var(--track); font-size:.84rem; }
+  .settings-row:last-child{ border:none; }
 
-  /* Nav */
   nav{ position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px;
     display:flex; background:var(--surface); border-top:1px solid var(--line); z-index:40; }
   nav button{ flex:1; background:none; border:none; color:var(--muted); font-size:.62rem; font-weight:600;
-    padding:9px 0 12px; letter-spacing:.02em; }
+    padding:9px 0 12px; }
   nav button.on{ color:var(--accent); }
   nav svg{ display:block; margin:0 auto 3px; width:20px; height:20px; }
 
   dialog{ background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:16px;
-    padding:18px; max-width:340px; width:90%; }
+    padding:18px; max-width:360px; width:92%; }
   dialog::backdrop{ background:rgba(0,0,0,.6); }
   dialog h3{ margin:0 0 8px; font-family:var(--num); font-size:1.05rem; }
   dialog p{ font-size:.8rem; color:var(--muted); line-height:1.5; }
   dialog textarea{ width:100%; min-height:110px; background:var(--surface2); color:var(--ink);
     border:1px solid var(--line); border-radius:10px; padding:10px; font-size:.78rem; font-family:monospace; }
+  #dlgHelp{ max-height:82vh; overflow-y:auto; }
+  #dlgHelp h4{ color:var(--accent); font-size:.85rem; margin:14px 0 4px; }
+  #dlgHelp p, #dlgHelp li{ font-size:.78rem; color:var(--ink); line-height:1.55; }
+  #dlgHelp ul{ padding-left:18px; margin:4px 0; }
+  #dlgHelp .src{ color:var(--muted); font-size:.7rem; }
+
   .toast{ position:fixed; bottom:86px; left:50%; transform:translateX(-50%); background:var(--accent);
     color:var(--accent-ink); font-size:.8rem; font-weight:700; padding:10px 18px; border-radius:99px;
-    z-index:60; opacity:0; transition:opacity .25s; pointer-events:none; }
+    z-index:60; opacity:0; transition:opacity .25s; pointer-events:none; max-width:88%; text-align:center; }
   .toast.show{ opacity:1; }
-  .settings-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-bottom:1px solid var(--track); font-size:.84rem; }
-  .settings-row:last-child{ border:none; }
 </style>
 </head>
 <body>
 <header>
   <h1>Budgetplaner</h1>
-  <div class="month-nav"><b id="monthLabel">Juli 2026</b><span style="font-size:.6rem;opacity:.5">v1.7</span></div>
+  <div class="month-nav"><b id="monthLabel">Juli 2026</b><span style="font-size:.6rem;opacity:.5">v1.8</span>
+    <button class="helpbtn" onclick="document.getElementById('dlgHelp').showModal()" aria-label="Hilfe und Tipps">?</button>
+  </div>
 </header>
 
 <main>
   <!-- ============ TAB: BUDGET ============ -->
   <section id="tab-budget">
-    <div style="display:flex; gap:10px;">
-      <div class="card" style="flex:1">
-        <div class="kpi-label">Einnahmen (Ist)</div>
-        <div class="kpi" id="kpiIncome">0 <small>€</small></div>
-      </div>
-      <div class="card" style="flex:1; border-color:var(--accent)">
-        <div class="kpi-label">Noch übrig diesen Monat</div>
-        <div class="kpi gold" id="kpiRest">0 <small>€</small></div>
-        <div class="hint">Einnahmen − alle Ist-Ausgaben. Am Monatsende frei zuweisbar.</div>
-      </div>
+    <div class="kpi3">
+      <div class="card"><div class="t">Einnahmen</div><div class="v" id="kpiIncome">0</div></div>
+      <div class="card"><div class="t">Ausgegeben + gespart</div><div class="v" id="kpiOut">0</div></div>
+      <div class="card hl"><div class="t">Übrig</div><div class="v" id="kpiRest">0</div></div>
     </div>
-
-    <div class="card">
-      <div class="kpi-label">Wohin geht mein Geld?</div>
-      <div class="dist" id="distBar"></div>
-      <div class="legend" id="distLegend"></div>
-    </div>
-
+    <div class="ringrow" id="ringRow"></div>
     <div id="bannerArea"></div>
 
-    <div class="label">Einnahmen</div>
-    <div class="card"><div class="col-head"><span class="s">Soll</span><span>Ist</span><span>Offen</span></div><div id="listIncome"></div></div>
+    <details class="grp" id="grp-einnahmen">
+      <summary><span class="chev">▸</span><span class="gname">Einnahmen</span><span class="gsum num" id="sum-einnahmen"></span></summary>
+      <div class="rows" id="list-einnahmen"></div>
+      <button class="addcat" onclick="addCategory('einnahmen')">+ Einnahme-Kategorie hinzufügen</button>
+    </details>
 
-    <div class="label">Wohin dein Geld geht – Soll / Ist</div>
-    <details class="group" id="grpFix">
-      <summary><span class="chev">▶</span><span id="donFix"></span><span class="name">Fixkosten</span><span class="sum" id="sumFix"></span></summary>
-      <div class="inner"><div class="col-head"><span class="s">Soll</span><span>Ist</span><span>Rest</span></div><div id="listFix"></div></div>
+    <details class="grp" id="grp-fix">
+      <summary><span class="chev">▸</span><span class="gname">Fixkosten</span><span class="gsum num" id="sum-fix"></span></summary>
+      <div class="rows" id="list-fix"></div>
+      <button class="addcat" onclick="addCategory('fix')">+ Kategorie hinzufügen</button>
     </details>
-    <details class="group" open>
-      <summary><span class="chev">▶</span><span id="donAlltag"></span><span class="name">Alltag, Genuss &amp; Gesundheit</span><span class="sum" id="sumAlltag"></span></summary>
-      <div class="inner"><div class="col-head"><span class="s">Soll</span><span>Ist</span><span>Rest</span></div><div id="listAlltag"></div></div>
+
+    <details class="grp" open id="grp-alltag">
+      <summary><span class="chev">▸</span><span class="gname">Alltag &amp; Genuss</span><span class="gsum num" id="sum-alltag"></span></summary>
+      <div class="rows" id="list-alltag"></div>
+      <button class="addcat" onclick="addCategory('alltag')">+ Kategorie hinzufügen</button>
     </details>
-    <details class="group" open>
-      <summary><span class="chev">▶</span><span id="donSparen"></span><span class="name">Sparen &amp; Ziele</span><span class="sum" id="sumSparen"></span></summary>
-      <div class="inner"><div class="col-head"><span class="s">Soll</span><span>Ist</span><span>Rest</span></div><div id="listSparen"></div></div>
+
+    <details class="grp" id="grp-sparen">
+      <summary><span class="chev">▸</span><span class="gname">Sparen &amp; Ziele</span><span class="gsum num" id="sum-sparen"></span></summary>
+      <div class="rows" id="list-sparen"></div>
+      <button class="addcat" onclick="addCategory('sparen')">+ Kategorie hinzufügen</button>
     </details>
 
     <div class="btnrow" style="margin-top:6px">
-      <button class="btn ghost" onclick="openImportCode()">Import-Code einfügen</button>
+      <button class="btn ghost" onclick="document.getElementById('dlgImport').showModal()">Import-Code einfügen</button>
       <button class="btn" onclick="monthClose()">Monat abschließen</button>
     </div>
   </section>
@@ -229,7 +253,7 @@
       <div class="settings-row"><span>Lebensversicherung ist beitragsfrei (Phase 2 aktivieren)</span><input type="checkbox" id="phaseToggle" onchange="togglePhase(this.checked)"></div>
       <div class="settings-row"><span>Letztes Backup</span><span id="lastBackupLabel" style="color:var(--muted); font-size:.78rem">–</span></div>
     </div>
-    <p class="hint" style="padding:0 6px">Deine Daten liegen nur auf diesem Gerät. Mehreinkommen-Regel: 50 % ETF · 25 % Sparziele · 25 % frei. Bitcoin-Leitplanke: halten, kein Hebel, Deckel 5–10 %.</p>
+    <p class="hint" style="padding:0 6px">Deine Daten liegen nur auf diesem Gerät. Mehreinkommen-Regel: 50 % ETF · 25 % Sparziele · 25 % frei.</p>
     <input type="file" id="importFile" style="display:none" onchange="importBackup(this)">
   </section>
 </main>
@@ -246,9 +270,9 @@
 </nav>
 
 <dialog id="dlgImport">
-  <h3>Import-Code einfügen</h3>
-  <p>Zwei Möglichkeiten: <b>Import-Code von Claude</b> einfügen (Beträge werden zu den Ist-Werten addiert) – oder ein <b>komplettes Backup als Text</b> einfügen (ersetzt alle Daten).</p>
-  <textarea id="importCodeArea" placeholder='{"typ":"ist-update","eintraege":[["Miete",574]]}'></textarea>
+  <h3>Import einfügen</h3>
+  <p>Zwei Möglichkeiten: <b>Import-Code von Claude</b> (erzeugt Einzelbuchungen mit Datum) – oder ein <b>komplettes Backup als Text</b> (ersetzt alle Daten).</p>
+  <textarea id="importCodeArea" placeholder='{"typ":"ist-update","eintraege":[["Strom",53]]}'></textarea>
   <div class="btnrow" style="margin-top:10px">
     <button class="btn ghost" onclick="document.getElementById('dlgImport').close()">Abbrechen</button>
     <button class="btn" onclick="applyImportCode()">Übernehmen</button>
@@ -258,8 +282,37 @@
 <dialog id="dlgClose">
   <h3>Monat abschließen</h3>
   <p id="closeSummary"></p>
-  <p>Der Übrig-Betrag gehört dir – wohin soll er? (Du kannst ihn auch einfach auf dem Girokonto lassen.)</p>
+  <p>Der Übrig-Betrag gehört dir – wohin soll er?</p>
   <div class="btnrow" id="closeButtons"></div>
+</dialog>
+
+<dialog id="dlgHelp">
+  <h3>Hilfe &amp; Tipps 💡</h3>
+  <h4>Welche Kosten gehören wohin?</h4>
+  <ul>
+    <li><b>Fixkosten:</b> alles, was jeden Monat automatisch abgebucht wird (Miete, Strom, Internet, Versicherungen, Handy) – plus Lebensmittel und Tanken.</li>
+    <li><b>Alltag &amp; Genuss:</b> alles Flexible – Essen gehen, Freizeit, Kleidung, Gesundheit, Geschenke.</li>
+    <li><b>Sparen &amp; Ziele:</b> Geld, das dein Girokonto verlässt, aber dir gehört (ETF, Notgroschen, Sparziele).</li>
+    <li><b>Bargeld-Regel:</b> Sobald du Geld abhebst, gilt es als ausgegeben – buche es in die Kategorie, wofür es gedacht ist. Sonst „verschwindet" es unsichtbar.</li>
+  </ul>
+  <h4>Faustregeln für die Aufteilung</h4>
+  <ul>
+    <li>Fixkosten: möglichst unter <b>55–60 %</b> vom Netto.</li>
+    <li>Sparen gesamt: Ziel <b>15–25 %</b> – jeder Prozentpunkt zählt, klein anfangen ist okay.</li>
+    <li>Genuss: <b>~10 %</b> sind gesund – wer sich alles verbietet, hält kein Budget durch.</li>
+  </ul>
+  <h4>Jahreskosten-Umlage – der wichtigste Trick</h4>
+  <p>Kfz-Versicherung, Kfz-Steuer, TÜV, Rundfunkbeitrag, Jahresverträge: Rechne jede Jahresrechnung ÷ 12 und lege den Betrag <b>monatlich auf ein eigenes Extra-Konto</b>. Wenn die Rechnung kommt, ist das Geld da – kein Monat wird mehr „gesprengt", und du greifst nie wieder heimlich den Notgroschen an. Die Töpfe samt Fälligkeiten findest du im Tab „Ziele".</p>
+  <h4>Die richtigen Extra-Konten</h4>
+  <p>Empfehlung: 4 kostenlose Unterkonten bei deiner Bank – <b>Jahreskosten</b> (Umlage), <b>Auto</b> (nächstes Auto), <b>Urlaub</b>, plus dein Sparziel für Kinder o. Ä. Daueraufträge zum 1. des Monats: erst sparen, dann leben („pay yourself first").</p>
+  <h4>Notgroschen</h4>
+  <p>Ziel: <b>6 Monats-Fixkosten</b> auf einem Tagesgeldkonto. Er ist NUR für Notfälle (Waschmaschine, Tierarzt-OP, Jobverlust) – nicht für Urlaub oder Rechnungen, die man vorhersehen kann (dafür ist die Jahreskosten-Umlage da).</p>
+  <h4>Monatsende</h4>
+  <p>„Monat abschließen" drücken: Der Übrig-Betrag wird deinem Wunschziel zugewiesen, alle Ist-Werte starten bei null, der Monat wandert in den Verlauf. Einmal im Monat die echten Kontostände im Vermögen-Tab aktualisieren – dauert 2 Minuten.</p>
+  <h4>Mehr Einkommen?</h4>
+  <p>Bewährte Regel: <b>50 % in den ETF, 25 % in Sparziele, 25 % frei</b> – so wächst dein Vermögen automatisch mit, ohne dass du verzichtest.</p>
+  <p class="src">Backup nicht vergessen: Verlauf → Export. Deine Daten liegen nur auf diesem Gerät – das ist dein Datenschutz-Vorteil und deine Verantwortung.</p>
+  <div class="btnrow" style="margin-top:10px"><button class="btn" onclick="document.getElementById('dlgHelp').close()">Alles klar</button></div>
 </dialog>
 
 <div class="toast" id="toast"></div>
@@ -269,41 +322,43 @@
 const KEY='budgetplaner_v1';
 const fmt=n=>(Math.round(n*100)/100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
 const MONATE=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const GROUPS=['einnahmen','fix','alltag','sparen'];
+let openKey=null;
 
 function defaultState(){
   return {
-    schema:7, phase:1,
+    schema:8, phase:1,
     monat:(new Date()).toISOString().slice(0,7),
     lastBackup:null,
     incomeBaseline:0,
     einnahmen:[
-      {name:'Gehalt', soll:0, ist:0},
-      {name:'Kindergeld', soll:0, ist:0},
-      {name:'Sonstige Einnahmen', soll:0, ist:0}
+      {name:'Gehalt', soll:0, ist:0, b:[]},
+      {name:'Kindergeld', soll:0, ist:0, b:[]},
+      {name:'Sonstige Einnahmen', soll:0, ist:0, b:[]}
     ],
     fix:[
-      {name:'Miete', soll:0, ist:0},
-      {name:'Einkaufen', soll:0, ist:0},
-      {name:'Strom', soll:0, ist:0},
-      {name:'Internet', soll:0, ist:0},
-      {name:'Mobilfunk', soll:0, ist:0},
-      {name:'Versicherungen', soll:0, ist:0},
-      {name:'Auto / Tanken', soll:0, ist:0},
-      {name:'Kontoführung', soll:0, ist:0}
+      {name:'Miete', soll:0, ist:0, b:[]},
+      {name:'Einkaufen', soll:0, ist:0, b:[]},
+      {name:'Strom', soll:0, ist:0, b:[]},
+      {name:'Internet', soll:0, ist:0, b:[]},
+      {name:'Mobilfunk', soll:0, ist:0, b:[]},
+      {name:'Versicherungen', soll:0, ist:0, b:[]},
+      {name:'Auto / Tanken', soll:0, ist:0, b:[]},
+      {name:'Kontoführung', soll:0, ist:0, b:[]}
     ],
     alltag:[
-      {name:'Genuss & Freizeit', soll:0, ist:0},
-      {name:'Gesundheit', soll:0, ist:0},
-      {name:'Freizeit Kind', soll:0, ist:0},
-      {name:'Kleidung', soll:0, ist:0},
-      {name:'Sonstiges', soll:0, ist:0}
+      {name:'Genuss & Freizeit', soll:0, ist:0, b:[]},
+      {name:'Gesundheit', soll:0, ist:0, b:[]},
+      {name:'Freizeit Kind', soll:0, ist:0, b:[]},
+      {name:'Kleidung', soll:0, ist:0, b:[]},
+      {name:'Sonstiges', soll:0, ist:0, b:[]}
     ],
     sparen:[
-      {name:'ETF Altersvorsorge', soll:0, ist:0},
-      {name:'Notgroschen', soll:0, ist:0},
-      {name:'Jahreskosten-Konto', soll:0, ist:0},
-      {name:'Auto-Sparziel', soll:0, ist:0},
-      {name:'Urlaub', soll:0, ist:0}
+      {name:'ETF Altersvorsorge', soll:0, ist:0, b:[]},
+      {name:'Notgroschen', soll:0, ist:0, b:[]},
+      {name:'Jahreskosten-Konto', soll:0, ist:0, b:[]},
+      {name:'Auto-Sparziel', soll:0, ist:0, b:[]},
+      {name:'Urlaub', soll:0, ist:0, b:[]}
     ],
     vermoegen:[
       {name:'Girokonto', wert:0, grp:'own'},
@@ -319,15 +374,34 @@ function defaultState(){
   };
 }
 
-let S=load();
+function syncIst(item){
+  if(Array.isArray(item.b)) item.ist=Math.round(item.b.reduce((a,c)=>a+ +c.v,0)*100)/100;
+  return item.ist;
+}
 function migrate(s){
-  // Öffentliche Version: Daten kommen per Backup-Import (Schema 7); ältere Schemata werden unverändert geladen.
+  if(s.schema===1){
+    s.fix=s.fix.filter(f=>f.name!=='ARD/ZDF');
+    const jk=s.sparen.find(x=>x.name==='Jahreskosten-Konto');
+    if(jk) jk.soll=Math.round((jk.soll+18.36)*100)/100;
+    s.schema=2;
+  }
+  if(s.schema>=2&&s.schema<=6){ s.schema=7; }
+  if(s.schema===7){
+    // v1.8: Einzelbuchungen — vorhandene Ist-Werte werden als eine Übernahme-Buchung angelegt
+    GROUPS.forEach(g=>(s[g]||[]).forEach(it=>{
+      if(!Array.isArray(it.b)) it.b = it.ist>0 ? [{d:(s.monat||'2026-07')+'-15', t:'Übernahme Ist-Stand', v:it.ist}] : [];
+    }));
+    s.schema=8;
+  }
+  GROUPS.forEach(g=>(s[g]||[]).forEach(it=>{ if(!Array.isArray(it.b)) it.b=[]; }));
   return s;
 }
+
+let S=load();
 function load(){
   try{
     const raw=localStorage.getItem(KEY);
-    if(raw){ const s=JSON.parse(raw); if(s.schema>=1&&s.schema<=7) return migrate(s); }
+    if(raw){ const s=JSON.parse(raw); if(s.schema>=1&&s.schema<=8) return migrate(s); }
   }catch(e){}
   return defaultState();
 }
@@ -338,64 +412,73 @@ function save(){
 if(navigator.storage && navigator.storage.persist){ navigator.storage.persist(); }
 
 /* ---------- Rendering ---------- */
-function rowHTML(list,item,i){
-  const soll=+item.soll, ist=+item.ist;
+function sums(list){ return S[list].reduce((a,c)=>({soll:a.soll+ +c.soll, ist:a.ist+ +c.ist}),{soll:0,ist:0}); }
+function fmtDate(d){ if(!d) return ''; const p=String(d).split('-'); return p.length===3?`${p[2]}.${p[1]}.`:d; }
+
+function rowHTML(list,i){
+  const it=S[list][i];
+  const soll=+it.soll, ist=+it.ist;
   const pct=soll>0?Math.min(100,ist/soll*100):(ist>0?100:0);
   const rest=Math.round((soll-ist)*100)/100;
-  const cls=ist>soll+0.005?'x':(pct>=99?'g':'');
-  const einnahme=list==='einnahmen';
-  const restCell=einnahme
-    ? `<span class="rest-col ${rest>0.005?'bad':''}">${fmt(Math.abs(rest))}<small>${rest>0.005?'fehlt':'ok'}</small></span>`
-    : `<span class="rest-col ${rest<-0.005?'bad':''}">${rest<-0.005?'−'+fmt(-rest):fmt(rest)}<small>${rest<-0.005?'über Plan':'Rest'}</small></span>`;
-  return `<div class="row"><div class="name">${item.name}${item.note?`<small>${item.note}</small>`:''}
-    <div class="minibar"><i class="${cls}" style="width:${pct}%"></i></div></div>
-    <input class="soll" type="number" inputmode="decimal" step="0.01" value="${item.soll}" aria-label="Soll ${item.name}"
-      onchange="upd('${list}',${i},'soll',this.value)">
-    <input type="number" inputmode="decimal" step="0.01" value="${item.ist}" aria-label="Ist ${item.name}"
-      onchange="upd('${list}',${i},'ist',this.value)">
-    ${restCell}</div>`;
+  const cls=ist>soll+0.005?'x':(pct>=99&&soll>0?'g':'');
+  const isIncome=list==='einnahmen';
+  const restTxt=isIncome
+    ? (rest>0.005?`<span class="rst bad">${fmt(rest)} offen</span>`:`<span class="rst good">✓</span>`)
+    : (rest<-0.005?`<span class="rst bad">${fmt(-rest)} drüber</span>`:`<span class="rst good">Rest ${fmt(rest)}</span>`);
+  const open=openKey===list+i;
+  let html=`<div class="krow">
+    <div class="top" onclick="toggleRow('${list}',${i})">
+      <span class="kname">${it.name} <span class="chev">${open?'▾':'▸'}</span>${it.note?`<div class="hint">${it.note}</div>`:''}</span>
+      <span class="kwert num"><b>${fmt(ist)}</b> / ${fmt(soll)} · ${restTxt}</span>
+    </div>
+    <div class="underline"><i class="${cls}" style="width:${pct}%"></i></div>`;
+  if(open){
+    html+=`<div class="bux">`+
+      it.b.map((bu,j)=>`<div class="bu"><span>${fmtDate(bu.d)} · <b>${bu.t}</b></span>
+        <span class="num">${fmt(bu.v)} € <button class="del" onclick="delBuchung('${list}',${i},${j})" aria-label="Buchung löschen">×</button></span></div>`).join('')+
+      `<div class="bu-add">
+        <input class="t" id="bt_${list}_${i}" placeholder="${isIncome?'Woher?':'Wo? (z. B. Lidl)'}">
+        <input class="v" id="bv_${list}_${i}" type="number" inputmode="decimal" step="0.01" placeholder="€">
+        <button onclick="addBuchung('${list}',${i})" aria-label="Buchung hinzufügen">+</button>
+      </div></div>
+      <div class="soll-edit">Monats-Soll: <input type="number" inputmode="decimal" step="0.01" value="${it.soll}"
+        onchange="updSoll('${list}',${i},this.value)"> €</div>`;
+  }
+  return html+`</div>`;
 }
-function donutSVG(ist,soll){
+
+function ringSVG(ist,soll){
   const pct=soll>0?Math.min(1,ist/soll):0;
-  const r=9, c=2*Math.PI*r;
-  const col=ist>soll+0.005?'var(--bad)':'var(--accent)';
-  return `<svg class="donut" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="${r}" fill="none" stroke="var(--track)" stroke-width="4"></circle>
-    <circle cx="12" cy="12" r="${r}" fill="none" stroke="${col}" stroke-width="4"
-      stroke-dasharray="${(pct*c).toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round" transform="rotate(-90 12 12)"></circle></svg>`;
+  const over=ist>soll+0.005;
+  const r=17,c=2*Math.PI*r;
+  return `<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+    <circle cx="22" cy="22" r="${r}" fill="none" stroke="var(--track)" stroke-width="6"></circle>
+    <circle cx="22" cy="22" r="${r}" fill="none" stroke="${over?'var(--bad)':'var(--accent)'}" stroke-width="6"
+      stroke-dasharray="${(pct*c).toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round" transform="rotate(-90 22 22)"></circle></svg>`;
 }
-function renderList(id,list){
-  document.getElementById(id).innerHTML=S[list].map((it,i)=>rowHTML(list,it,i)).join('');
-}
-function sums(list){ return S[list].reduce((a,c)=>({soll:a.soll+ +c.soll, ist:a.ist+ +c.ist}),{soll:0,ist:0}); }
 
 function render(){
   const [y,m]=S.monat.split('-');
   document.getElementById('monthLabel').textContent=MONATE[+m-1]+' '+y;
-
-  renderList('listIncome','einnahmen');
-  renderList('listFix','fix');
-  renderList('listAlltag','alltag');
-  renderList('listSparen','sparen');
-
+  GROUPS.forEach(g=>{
+    document.getElementById('list-'+g).innerHTML=S[g].map((_,i)=>rowHTML(g,i)).join('');
+    const su=sums(g);
+    document.getElementById('sum-'+g).textContent=fmt(su.ist)+' / '+fmt(su.soll)+' €';
+  });
   const inc=sums('einnahmen'), fix=sums('fix'), all=sums('alltag'), sp=sums('sparen');
-  const spent=fix.ist+all.ist+sp.ist;
-  const rest=inc.ist-spent;
-  document.getElementById('kpiIncome').innerHTML=fmt(inc.ist)+' <small>€</small>';
-  document.getElementById('kpiRest').innerHTML=fmt(rest)+' <small>€</small>';
-  document.getElementById('sumFix').textContent=fmt(fix.ist)+' / '+fmt(fix.soll)+' €';
-  document.getElementById('sumAlltag').textContent=fmt(all.ist)+' / '+fmt(all.soll)+' €';
-  document.getElementById('sumSparen').textContent=fmt(sp.ist)+' / '+fmt(sp.soll)+' €';
-  document.getElementById('donFix').innerHTML=donutSVG(fix.ist,fix.soll);
-  document.getElementById('donAlltag').innerHTML=donutSVG(all.ist,all.soll);
-  document.getElementById('donSparen').innerHTML=donutSVG(sp.ist,sp.soll);
+  const out=fix.ist+all.ist+sp.ist;
+  document.getElementById('kpiIncome').textContent=fmt(inc.ist);
+  document.getElementById('kpiOut').textContent=fmt(out);
+  document.getElementById('kpiRest').textContent=fmt(inc.ist-out);
 
-  // Verteilung (nach Soll, damit sie ab Monatsstart aussagekräftig ist)
-  const base=Math.max(inc.soll,1);
-  const parts=[['Fixkosten',fix.soll,'#D2AC66'],['Sparen & Ziele',sp.soll,'#84C7A1'],
-               ['Alltag & Genuss',all.soll,'#8FA6C2'],['Puffer',Math.max(0,inc.soll-fix.soll-sp.soll-all.soll),'#4A554E']];
-  document.getElementById('distBar').innerHTML=parts.map(p=>`<span style="width:${p[1]/base*100}%;background:${p[2]}"></span>`).join('');
-  document.getElementById('distLegend').innerHTML=parts.map(p=>`<span><i style="background:${p[2]}"></i>${p[0]} ${fmt(p[1])} €</span>`).join('');
+  const ring=(label,su,target)=>{
+    const rest=Math.round((su.soll-su.ist)*100)/100;
+    const over=su.ist>su.soll+0.005;
+    const rv=over?`<div class="rv num bad">${fmt(-rest)} € drüber</div>`
+                 :`<div class="rv num">${su.soll>0?Math.round(su.ist/su.soll*100):0} % · Rest ${fmt(rest)}</div>`;
+    return `<div class="card" onclick="openGroup('${target}')">${ringSVG(su.ist,su.soll)}<div class="rt">${label}</div>${rv}</div>`;
+  };
+  document.getElementById('ringRow').innerHTML=ring('Fixkosten',fix,'fix')+ring('Alltag',all,'alltag')+ring('Sparen',sp,'sparen');
 
   renderBanners(inc);
   renderWealth();
@@ -404,14 +487,19 @@ function render(){
   document.getElementById('phaseToggle').checked=S.phase===2;
   document.getElementById('lastBackupLabel').textContent=S.lastBackup?new Date(S.lastBackup).toLocaleDateString('de-DE'):'noch nie';
 }
+function openGroup(g){
+  document.getElementById('grp-'+g).open=true;
+  document.getElementById('grp-'+g).scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggleRow(list,i){ openKey = openKey===list+i ? null : list+i; render(); }
 
 function renderBanners(inc){
   const area=document.getElementById('bannerArea'); let html='';
   const days=S.lastBackup?(Date.now()-S.lastBackup)/864e5:999;
-  if(days>30) html+=`<div class="banner"><span class="dot"></span><span><b>Backup fällig:</b> Dein letztes Backup ist ${S.lastBackup?Math.round(days)+' Tage':'noch nie gemacht'}. Sichere deine Daten als Datei.</span><button class="btn small" onclick="exportBackup()">Jetzt</button></div>`;
+  if(days>30) html+=`<div class="banner"><span class="dot"></span><span><b>Backup fällig:</b> ${S.lastBackup?Math.round(days)+' Tage her':'noch nie gemacht'} – sichere deine Daten als Datei.</span><button class="btn small" onclick="exportBackup()">Jetzt</button></div>`;
   const plus=inc.soll-S.incomeBaseline;
-  if(plus>4.99) html+=`<div class="banner"><span class="dot"></span><span><b>Mehreinkommen erkannt (+${fmt(plus)} €):</b> Vorschlag nach deiner Regel – ${fmt(plus*0.5)} € ETF · ${fmt(plus*0.25)} € Sparziele · ${fmt(plus*0.25)} € frei. Du entscheidest: Soll-Werte selbst anpassen.</span><button class="btn small ghost" onclick="ackIncome()">OK</button></div>`;
-  if(S.phase===1) html+=`<div class="banner"><span class="dot"></span><span><b>Phase 1 aktiv:</b> Nach der Beitragsfreistellung der Lebensversicherung unter „Verlauf“ auf Phase 2 umschalten.</span></div>`;
+  if(plus>4.99) html+=`<div class="banner"><span class="dot"></span><span><b>Mehreinkommen (+${fmt(plus)} €):</b> Vorschlag – ${fmt(plus*0.5)} € ETF · ${fmt(plus*0.25)} € Sparziele · ${fmt(plus*0.25)} € frei. Du entscheidest.</span><button class="btn small ghost" onclick="ackIncome()">OK</button></div>`;
+  if(S.phase===1) html+=`<div class="banner"><span class="dot"></span><span><b>Phase 1 aktiv:</b> Nach der Beitragsfreistellung der Lebensversicherung unter „Verlauf" auf Phase 2 umschalten.</span></div>`;
   area.innerHTML=html;
 }
 function ackIncome(){ S.incomeBaseline=sums('einnahmen').soll; save(); render(); }
@@ -432,8 +520,8 @@ function renderGoals(){
   const kv=n=>{ const k=S.vermoegen.find(v=>v.name===n); return k? +k.wert:0; };
   document.getElementById('listGoals').innerHTML=S.ziele.map((z,i)=>{
     const stand=z.kontoRef?kv(z.kontoRef):+z.stand;
-    const pct=Math.min(100,stand/z.ziel*100);
-    const edit=z.kontoRef?'':`<input type="number" inputmode="decimal" step="0.01" value="${z.stand}" aria-label="Stand ${z.name}" style="width:90px;background:var(--surface2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 8px;text-align:right" onchange="updZ(${i},this.value)">`;
+    const pct=z.ziel>0?Math.min(100,stand/z.ziel*100):0;
+    const edit=z.kontoRef?'':`<input type="number" inputmode="decimal" step="0.01" value="${z.stand}" aria-label="Stand ${z.name}" onchange="updZ(${i},this.value)">`;
     return `<div class="card goal"><div class="top"><span class="name">${z.name}</span><span class="nums">${fmt(stand)} / ${fmt(z.ziel)} €</span></div>
       <div class="bar"><i style="width:${pct}%"></i></div>
       <div class="pct">${Math.round(pct)} % erreicht</div>${edit}</div>`;
@@ -442,7 +530,7 @@ function renderGoals(){
   const stand=potKonto? +potKonto.wert:0;
   document.getElementById('listPots').innerHTML=
     `<div class="card goal"><div class="top"><span class="name">Kontostand Jahreskosten-Konto</span><span class="nums">${fmt(stand)} €</span></div>
-     <div class="hint">Empfohlen: 500 € Startkapital + 112 €/Monat. Fälligkeiten unten – reicht der Kontostand nicht bis zur nächsten Fälligkeit, wird es eng.</div></div>`+
+     <div class="hint">Reicht der Stand nicht bis zur nächsten Fälligkeit, wird es eng – rechtzeitig auffüllen.</div></div>`+
     S.toepfe.map(t=>`<div class="card goal"><div class="top"><span class="name">${t.name}</span><span class="nums">${fmt(t.jahr)} €/Jahr</span></div>
       <div class="due ${stand>=t.jahr?'ok':'warn'}">fällig: ${t.faellig} · Rücklage ${fmt(t.mtl)} €/Monat</div></div>`).join('');
 }
@@ -451,31 +539,50 @@ function renderHist(){
   const el=document.getElementById('listHist');
   el.innerHTML=S.verlauf.length?S.verlauf.slice().reverse().map(v=>{
     const [y,m]=v.monat.split('-');
-    return `<div class="row"><div class="name">${MONATE[+m-1]} ${y}</div>
-      <div class="hist-nums">Ein ${fmt(v.einnahmen)} · Aus ${fmt(v.ausgaben)}<br><b>Gespart ${fmt(v.gespart)} €</b> · Übrig ${fmt(v.uebrig)} €</div></div>`;
-  }).join(''):'<p class="hint">Noch kein Monat abgeschlossen. Nach deinem ersten „Monat abschließen" entsteht hier deine Entwicklung.</p>';
+    return `<div class="hrow"><span>${MONATE[+m-1]} ${y}</span>
+      <span class="hist-nums">Ein ${fmt(v.einnahmen)} · Aus ${fmt(v.ausgaben)}<br><b>Gespart ${fmt(v.gespart)} €</b> · Übrig ${fmt(v.uebrig)} €</span></div>`;
+  }).join(''):'<p class="hint">Noch kein Monat abgeschlossen.</p>';
 }
 
-/* ---------- Updates ---------- */
-function upd(list,i,field,val){ S[list][i][field]=Math.max(0,parseFloat(String(val).replace(',','.'))||0); save(); render(); }
+/* ---------- Änderungen ---------- */
+function updSoll(list,i,val){ S[list][i].soll=Math.max(0,parseFloat(String(val).replace(',','.'))||0); save(); render(); }
 function updW(i,val){ S.vermoegen[i].wert=parseFloat(String(val).replace(',','.'))||0; save(); render(); }
 function updZ(i,val){ S.ziele[i].stand=Math.max(0,parseFloat(String(val).replace(',','.'))||0); save(); render(); }
+
+function addBuchung(list,i){
+  const t=document.getElementById(`bt_${list}_${i}`).value.trim()||'Manuell';
+  const v=parseFloat(String(document.getElementById(`bv_${list}_${i}`).value).replace(',','.'));
+  if(!(v>0)){ toast('Bitte einen Betrag eingeben.'); return; }
+  S[list][i].b.push({d:new Date().toISOString().slice(0,10), t:t, v:Math.round(v*100)/100});
+  syncIst(S[list][i]); save(); render();
+}
+function delBuchung(list,i,j){
+  S[list][i].b.splice(j,1);
+  syncIst(S[list][i]); save(); render();
+}
+function addCategory(list){
+  const name=prompt('Name der neuen Kategorie:');
+  if(!name) return;
+  const soll=parseFloat(String(prompt('Monatliches Soll in € (0 = ohne Budget):','0')||'0').replace(',','.'))||0;
+  S[list].push({name:name.trim(), soll:Math.max(0,soll), ist:0, b:[]});
+  save(); render(); toast(`Kategorie „${name.trim()}" angelegt ✓`);
+}
 
 function togglePhase(on){
   S.phase=on?2:1;
   S.sparen.forEach(s=>{ if(s.p2!==undefined) s.soll=on?s.p2:(s.name==='ETF Altersvorsorge'?130:0); });
-  const lv=S.fix.find(f=>f.name.indexOf('LV')===0||f.name.toLowerCase().includes('lebensvers')); if(lv) lv.soll=on?0:50;
+  const lv=S.fix.find(f=>f.name.indexOf('LV')===0||f.name.toLowerCase().includes('lebensvers'));
+  if(lv) lv.soll=on?0:50;
   save(); render();
-  toast(on?'Phase 2 aktiv: ETF 145 € + Risiko-LV 10 €':'Phase 1 aktiv: ETF 105 €');
+  toast(on?'Phase 2 aktiv ✓':'Phase 1 aktiv');
 }
 
-/* ---------- Import-Code ---------- */
-function openImportCode(){ document.getElementById('dlgImport').showModal(); }
+/* ---------- Import ---------- */
 function applyImportCode(){
   const txt=document.getElementById('importCodeArea').value.trim();
   try{
     const data=JSON.parse(txt);
-    if(data&&data.schema>=1&&data.schema<=7&&Array.isArray(data.einnahmen)){
+    if(data&&data.schema>=1&&data.schema<=8&&Array.isArray(data.einnahmen)){
       S=migrate(data); save(); render();
       document.getElementById('dlgImport').close();
       toast('Komplettes Backup übernommen ✓');
@@ -483,12 +590,12 @@ function applyImportCode(){
     }
     if(data.typ!=='ist-update'||!Array.isArray(data.eintraege)) throw 0;
     let hits=0, misses=[];
-    data.eintraege.forEach(([name,betrag])=>{
+    data.eintraege.forEach(e=>{
+      const name=e[0], betrag=+e[1], datum=e[2]||new Date().toISOString().slice(0,10), text=e[3]||name;
       let found=null;
-      ['fix','alltag','sparen','einnahmen'].forEach(l=>{
-        if(!found) found=S[l].find(it=>it.name.toLowerCase().includes(String(name).toLowerCase()));
-      });
-      if(found){ found.ist=Math.round((found.ist+ +betrag)*100)/100; hits++; } else misses.push(name);
+      GROUPS.forEach(l=>{ if(!found) found=S[l].find(it=>it.name.toLowerCase().includes(String(name).toLowerCase())); });
+      if(found){ found.b.push({d:datum,t:text,v:Math.round(betrag*100)/100}); syncIst(found); hits++; }
+      else misses.push(name);
     });
     save(); render();
     document.getElementById('dlgImport').close();
@@ -513,9 +620,11 @@ function doClose(target,rest){
     gespart:sp.ist, uebrig:rest, uebrigNach:target});
   if(rest>0&&target!=='Girokonto lassen'){
     const key={'ETF Altersvorsorge':'etf','Notgroschen':'notgroschen','Urlaub':'urlaub'}[target];
-    const k=S.vermoegen.find(v=>key&&v.name.toLowerCase().includes(key)); if(k) k.wert=Math.round((+k.wert+rest)*100)/100;
+    const k=S.vermoegen.find(v=>key&&v.name.toLowerCase().includes(key));
+    if(k) k.wert=Math.round((+k.wert+rest)*100)/100;
   }
-  ['einnahmen','fix','alltag','sparen'].forEach(l=>S[l].forEach(it=>it.ist=0));
+  GROUPS.forEach(l=>S[l].forEach(it=>{ it.ist=0; it.b=[]; }));
+  openKey=null;
   const [y,m]=S.monat.split('-').map(Number);
   S.monat=`${m===12?y+1:y}-${String(m===12?1:m+1).padStart(2,'0')}`;
   save(); render();
@@ -538,7 +647,7 @@ function importBackup(input){
   const r=new FileReader();
   r.onload=()=>{ try{
       const s=JSON.parse(r.result);
-      if(!(s.schema>=1&&s.schema<=7)) throw 0;
+      if(!(s.schema>=1&&s.schema<=8)) throw 0;
       S=migrate(s); save(); render(); toast('Backup wiederhergestellt ✓');
     }catch(e){ toast('Datei nicht lesbar – ist es ein Budgetplaner-Backup?'); } };
   r.readAsText(f); input.value='';
