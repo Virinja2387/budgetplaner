@@ -12,10 +12,10 @@
     --bg:#151A17; --surface:#1E2621; --surface2:#26312A;
     --ink:#EFEAD9; --muted:#9DA89E;
     --accent:#D2AC66; --accent-ink:#171C18;
-    --good:#84C7A1; --warn:#E0A15C; --bad:#D98A7B;
+    --good:#4FB79A; --warn:#E9A63C; --bad:#E8703C;
     --line:rgba(210,172,102,.22); --track:rgba(255,255,255,.09);
     --radius:14px;
-    --num:Georgia,"Times New Roman",serif;
+    --num:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   }
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
@@ -35,7 +35,7 @@
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:13px 15px; }
   .label{ font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:10px 4px 2px; }
   .num{ font-family:var(--num); font-variant-numeric:tabular-nums; }
-  .hint{ font-size:.68rem; color:var(--muted); margin-top:3px; line-height:1.4; }
+  .hint{ font-size:.8rem; color:var(--muted); margin-top:3px; line-height:1.45; }
   .good{ color:var(--good); } .bad{ color:var(--bad); } .gold{ color:var(--accent); }
 
   /* KPI-Kacheln (Layout A) */
@@ -45,6 +45,37 @@
   .kpi3 .v{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.02rem; font-weight:700; }
   .kpi3 .card.hl{ border-color:var(--accent); }
   .kpi3 .card.hl .v{ color:var(--accent); }
+
+  /* Hero (Variante B) */
+  .hero{ text-align:center; padding:16px 4px 8px; }
+  .hero .ht{ font-size:1rem; color:var(--muted); }
+  .hero .hv{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.95rem; font-weight:700; color:var(--accent); line-height:1.15; }
+  .hero .hs{ font-size:.88rem; color:var(--muted); margin-top:2px; }
+
+  /* Ampel (farbenblind-sicher: Blaugrün / Orange / Rot-Orange) + rechtsbündige Betragsspalte */
+  .sdot{ width:13px; height:13px; border-radius:50%; flex:none; }
+  .sdot.good{ background:var(--good); } .sdot.warn{ background:var(--warn); }
+  .sdot.bad{ background:var(--bad); } .sdot.neutral{ background:var(--muted); }
+  .kamt{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1rem; font-weight:700;
+    white-space:nowrap; text-align:right; flex:none; min-width:118px; }
+  .kamt.good{ color:var(--good); } .kamt.warn{ color:var(--warn); }
+  .kamt.bad{ color:var(--bad); } .kamt.neutral{ color:var(--muted); }
+  .leg{ display:flex; flex-wrap:wrap; gap:6px 16px; justify-content:center; font-size:.8rem; color:var(--muted);
+    margin:0 0 4px; align-items:center; }
+  .leg span{ display:inline-flex; align-items:center; gap:6px; }
+
+  /* Detail-Kacheln + Info */
+  .kstats{ display:flex; gap:8px; margin:4px 0 12px; }
+  .kstats > div{ flex:1; background:var(--surface2); border:1px solid var(--line); border-radius:12px; padding:10px 6px; text-align:center; }
+  .kstats .l{ font-size:.76rem; color:var(--muted); }
+  .kstats .w{ font-family:var(--num); font-variant-numeric:tabular-nums; font-size:1.15rem; font-weight:700; margin-top:3px; }
+  .kstats .neg{ border-color:var(--bad); } .kstats .neg .w{ color:var(--bad); }
+  .kinfo-btn{ display:block; width:100%; text-align:left; background:none; border:none; color:var(--accent);
+    font-size:.95rem; font-weight:600; padding:2px 0 8px; cursor:pointer; }
+  .kinfo{ display:none; font-size:.95rem; line-height:1.6; color:var(--muted);
+    background:var(--surface2); border:1px dashed var(--line); border-radius:12px; padding:11px 13px; margin-bottom:10px; }
+  .kinfo.open{ display:block; }
+  .kinfo b{ color:var(--ink); font-weight:600; }
 
   /* Ring-Reihe (Layout A) */
   .ringrow{ display:flex; gap:8px; }
@@ -57,18 +88,18 @@
   details.grp{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
   details.grp summary{ list-style:none; display:flex; align-items:center; gap:10px; padding:12px 15px; cursor:pointer; }
   details.grp summary::-webkit-details-marker{ display:none; }
-  details.grp summary .gname{ flex:1; font-size:.88rem; font-weight:600; }
-  details.grp summary .gsum{ font-size:.78rem; color:var(--muted); }
+  details.grp summary .gname{ flex:1; font-size:1.05rem; font-weight:600; }
+  details.grp summary .gsum{ font-size:.9rem; color:var(--muted); }
   .chev{ color:var(--accent); font-size:.75rem; transition:transform .2s; }
   details.grp[open] summary .chev{ transform:rotate(90deg); }
   .rows{ border-top:1px solid var(--track); padding:2px 15px 6px; }
 
   /* Kategorie-Zeilen */
-  .krow{ padding:10px 0 2px; border-bottom:1px solid var(--track); }
+  .krow{ padding:15px 0 5px; border-bottom:1px solid var(--track); }
   .krow:last-child{ border-bottom:none; }
-  .krow .top{ display:flex; align-items:baseline; gap:8px; cursor:pointer; }
-  .krow .kname{ flex:1; font-size:.85rem; font-weight:500; min-width:0; }
-  .krow .kname .chev{ font-size:.65rem; }
+  .krow .top{ display:flex; align-items:center; gap:8px; cursor:pointer; }
+  .krow .kname{ flex:1; font-size:1.08rem; font-weight:500; min-width:0; }
+  .krow .kname .chev{ font-size:.8rem; }
   .krow .kwert{ font-size:.78rem; color:var(--muted); white-space:nowrap; }
   .krow .kwert b{ color:var(--ink); }
   .krow .kwert .rst{ font-weight:700; }
@@ -79,21 +110,24 @@
 
   /* Einzelbuchungen */
   .bux{ margin:0 0 10px; border-left:2px solid var(--line); padding-left:10px; display:flex; flex-direction:column; gap:6px; }
-  .bu{ display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:.76rem; color:var(--muted); }
-  .bu b{ color:var(--ink); font-weight:500; }
-  .bu .del{ color:var(--bad); background:none; border:none; font-size:.9rem; padding:0 4px; cursor:pointer; }
-  .bu-add{ display:flex; gap:6px; margin-top:2px; }
+  .bu{ display:flex; align-items:center; gap:7px; font-size:.92rem; color:var(--muted); padding:5px 0; }
+  .bu .bname{ flex:1; min-width:0; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bu .bval{ flex:none; font-family:var(--num); font-variant-numeric:tabular-nums; font-weight:700; color:var(--ink); white-space:nowrap; }
+  .bdate{ flex:none; width:120px; background:var(--surface2); border:1px solid var(--line); color:var(--muted); border-radius:8px; padding:5px 6px; font-size:.8rem; font-family:inherit; }
+  .bu .bmove{ flex:none; color:var(--accent); background:none; border:none; font-size:1.05rem; padding:0 2px; cursor:pointer; }
+  .bu .del{ flex:none; color:var(--bad); background:none; border:none; font-size:1.2rem; padding:0 2px; cursor:pointer; }
+  .bu-add{ display:flex; gap:6px; margin-top:6px; }
   .bu-add input{ background:var(--surface2); border:1px solid var(--line); color:var(--ink);
-    border-radius:8px; padding:7px 8px; font-size:.76rem; min-width:0; }
-  .bu-add input.t{ flex:1; } .bu-add input.v{ width:70px; text-align:right; font-family:var(--num); }
-  .bu-add button{ background:var(--accent); color:var(--accent-ink); border:none; border-radius:8px;
-    padding:0 13px; font-weight:800; font-size:1rem; cursor:pointer; }
-  .soll-edit{ display:flex; align-items:center; gap:8px; font-size:.72rem; color:var(--muted); margin:0 0 10px; padding-left:12px; }
-  .soll-edit input{ width:80px; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
-    border-radius:8px; padding:6px 8px; font-size:.78rem; text-align:right; font-family:var(--num); }
-  .addcat{ display:block; width:calc(100% - 30px); margin:4px 15px 12px; padding:9px; text-align:center;
+    border-radius:10px; padding:12px 10px; font-size:.98rem; min-width:0; }
+  .bu-add input.t{ flex:1; } .bu-add input.v{ width:80px; text-align:right; font-family:var(--num); }
+  .bu-add button{ background:var(--accent); color:var(--accent-ink); border:none; border-radius:10px;
+    padding:0 18px; font-weight:800; font-size:1.3rem; cursor:pointer; }
+  .soll-edit{ display:flex; align-items:center; gap:8px; font-size:.9rem; color:var(--muted); margin:2px 0 12px; padding-left:12px; }
+  .soll-edit input{ width:96px; background:var(--surface2); border:1px solid var(--line); color:var(--ink);
+    border-radius:10px; padding:10px 10px; font-size:.98rem; text-align:right; font-family:var(--num); }
+  .addcat{ display:block; width:calc(100% - 30px); margin:4px 15px 12px; padding:13px; text-align:center;
     background:transparent; border:1px dashed var(--line); border-radius:10px; color:var(--accent);
-    font-size:.76rem; font-weight:600; cursor:pointer; }
+    font-size:.92rem; font-weight:600; cursor:pointer; }
 
   .banner{ display:flex; gap:10px; align-items:flex-start; background:var(--surface2);
     border:1px dashed var(--line); border-radius:var(--radius); padding:11px 13px; font-size:.76rem; line-height:1.45; }
@@ -179,12 +213,12 @@
 <main>
   <!-- ============ TAB: BUDGET ============ -->
   <section id="tab-budget">
-    <div class="kpi3">
-      <div class="card"><div class="t">Einnahmen</div><div class="v" id="kpiIncome">0</div></div>
-      <div class="card"><div class="t">Ausgegeben + gespart</div><div class="v" id="kpiOut">0</div></div>
-      <div class="card hl"><div class="t">Übrig</div><div class="v" id="kpiRest">0</div></div>
+    <div class="hero">
+      <div class="ht">Diesen Monat noch frei</div>
+      <div class="hv"><span id="kpiRest">0</span> €</div>
+      <div class="hs"><span id="kpiIncome">0</span> € rein · <span id="kpiOut">0</span> € raus &amp; gespart</div>
     </div>
-    <div class="ringrow" id="ringRow"></div>
+    <p class="leg"><span><span class="sdot good"></span> Grün: So viel Budget bleibt noch</span><span><span class="sdot bad"></span> Rot: Ausgaben liegen über Budget</span></p>
     <div id="bannerArea"></div>
 
     <details class="grp" id="grp-einnahmen">
@@ -277,6 +311,13 @@
     <button class="btn ghost" onclick="document.getElementById('dlgImport').close()">Abbrechen</button>
     <button class="btn" onclick="applyImportCode()">Übernehmen</button>
   </div>
+</dialog>
+
+<dialog id="dlgMove">
+  <h3>Ausgabe verschieben</h3>
+  <p id="moveInfo"></p>
+  <div class="btnrow" id="moveButtons" style="flex-direction:column"></div>
+  <div class="btnrow" style="margin-top:10px"><button class="btn ghost" onclick="document.getElementById('dlgMove').close()">Abbrechen</button></div>
 </dialog>
 
 <dialog id="dlgClose">
@@ -415,33 +456,67 @@ if(navigator.storage && navigator.storage.persist){ navigator.storage.persist();
 function sums(list){ return S[list].reduce((a,c)=>({soll:a.soll+ +c.soll, ist:a.ist+ +c.ist}),{soll:0,ist:0}); }
 function fmtDate(d){ if(!d) return ''; const p=String(d).split('-'); return p.length===3?`${p[2]}.${p[1]}.`:d; }
 
+function statusOf(list,it){
+  const soll=+it.soll, ist=+it.ist, rest=Math.round((soll-ist)*100)/100;
+  if(list==='einnahmen') return rest>0.005 ? {c:'warn', t:fmt(rest)+' € fehlen'} : {c:'good', t:'ist da'};
+  if(list==='sparen')    return rest>0.005 ? {c:'warn', t:fmt(rest)+' € offen'} : {c:'good', t:'erledigt'};
+  if(soll<=0)            return {c:'neutral', t:fmt(ist)+' €'};
+  if(ist>soll+0.005)     return {c:'bad',  t:fmt(-rest)+' € drüber'};
+  if(ist/soll>=0.9)      return {c:'warn', t:fmt(rest)+' € übrig'};
+  return {c:'good', t:fmt(rest)+' € übrig'};
+}
+function catInfo(name, list){
+  const n=name.toLowerCase();
+  if(list==='sparen'){
+    if(n.includes('noan')||n.includes('kind')) return '<b>Fester Sparbetrag fürs Kind</b> – prüfe, ob er evtl. schon in einem anderen Sparplan steckt (siehe Notiz unten). Dann keinen zweiten Dauerauftrag anlegen.';
+    return '<b>Sparen.</b> Am besten per <b>Dauerauftrag zum 1.</b> aufs passende Konto (siehe Notiz unten). Falls du den Dauerauftrag mal vergisst: den Betrag von Hand überweisen und hier eintragen.';
+  }
+  if(list==='einnahmen') return '<b>Was rein:</b> alles, was tatsächlich reinkommt. Sachbezüge (z. B. Essenskarte) getrennt erfassen, weil sie nicht aufs Girokonto gehen.';
+  if(n.includes('essen')||n.includes('einkauf')) return '<b>Was rein:</b> Lebensmittel, Getränke, Drogerie, Tierfutter. <b>Nicht rein:</b> Restaurant/Café (→ Genuss), Sachen fürs Kind (→ Kind).';
+  if(n.includes('tanken')||n.includes('auto')) return '<b>Was rein:</b> Sprit, Parken, Autowäsche. <b>Nicht rein:</b> Versicherung, Steuer, TÜV – die laufen übers Jahreskosten-Konto.';
+  if(n.includes('genuss')||(n.includes('freizeit')&&!n.includes('noan'))) return '<b>Was rein:</b> Essen gehen, Kino, Hobbys, Shopping für dich, Bestell-Essen. <b>Faustregel:</b> ~10 % vom Einkommen sind gesund.';
+  if(n.includes('gesundheit')) return '<b>Was rein:</b> Arzt, Physio, Apotheke, Zusatzversicherungen. Große Einmal-Kosten (z. B. Brille aus Rücklagen) besser als eigene Sonderausgabe führen.';
+  if(n.includes('noan')||n.includes('kind')) return '<b>Was rein:</b> alles fürs Kind – Ausflüge, Schwimmbad, Spielzeug, Kleidung, Kindergeburtstage. Tipp: Kindergeld &amp; Kinderzuschlag sind dafür gedacht, also darf das Budget höher sein als du denkst.';
+  if(n.includes('kleidung')) return '<b>Was rein:</b> Kleidung &amp; Schuhe für dich und dein Kind. Kinder wachsen schnell – lieber etwas Puffer einplanen.';
+  if(n.includes('miete')) return '<b>Was rein:</b> Kaltmiete plus Nebenkosten. Falls Wohngeld fließt: netto eintragen (Miete minus Wohngeld).';
+  if(n.includes('sonder')) return '<b>Was rein:</b> Einmalige große Ausgaben, die aus Rücklagen bezahlt werden (Brille, Reparatur). So verzerren sie dein normales Monatsbudget nicht.';
+  if(n.includes('etf')||n.includes('vorsorge')) return '<b>Altersvorsorge.</b> Möglichst nicht anfassen – Zeit ist hier dein größter Vorteil. Ein weltweiter ETF genügt.';
+  if(n.includes('notgroschen')) return '<b>Für echte Notfälle</b> (Reparatur, Tierarzt-OP, Jobverlust). Ziel: ca. 6 Monats-Fixkosten. Nicht für planbare Rechnungen.';
+  if(n.includes('jahreskosten')) return '<b>Sammeltopf für Jahresrechnungen</b> (Kfz, Rundfunk, TÜV …). Monatlich zurücklegen, damit keine Rechnung den Monat sprengt.';
+  if(n.includes('gehalt')||n.includes('einnahm')) return '<b>Was rein:</b> alles, was tatsächlich reinkommt. Sachbezüge (z. B. Essenskarte) getrennt erfassen, weil sie nicht aufs Girokonto gehen.';
+  return '<b>Tipp:</b> Trage hier alle Ausgaben ein, die zu dieser Kategorie gehören – lieber grob richtig als gar nicht.';
+}
 function rowHTML(list,i){
   const it=S[list][i];
   const soll=+it.soll, ist=+it.ist;
-  const pct=soll>0?Math.min(100,ist/soll*100):(ist>0?100:0);
   const rest=Math.round((soll-ist)*100)/100;
-  const cls=ist>soll+0.005?'x':(pct>=99&&soll>0?'g':'');
   const isIncome=list==='einnahmen';
-  const restTxt=isIncome
-    ? (rest>0.005?`<span class="rst bad">${fmt(rest)} offen</span>`:`<span class="rst good">✓</span>`)
-    : (rest<-0.005?`<span class="rst bad">${fmt(-rest)} drüber</span>`:`<span class="rst good">Rest ${fmt(rest)}</span>`);
   const open=openKey===list+i;
+  const st=statusOf(list,it);
   let html=`<div class="krow">
     <div class="top" onclick="toggleRow('${list}',${i})">
-      <span class="kname">${it.name} <span class="chev">${open?'▾':'▸'}</span>${it.note?`<div class="hint">${it.note}</div>`:''}</span>
-      <span class="kwert num"><b>${fmt(ist)}</b> / ${fmt(soll)} · ${restTxt}</span>
-    </div>
-    <div class="underline"><i class="${cls}" style="width:${pct}%"></i></div>`;
+      <span class="sdot ${st.c}"></span>
+      <span class="kname">${it.name} <span class="chev">${open?'▾':'▸'}</span></span>
+      <span class="kamt ${st.c}">${st.t}</span>
+    </div>`;
   if(open){
-    html+=`<div class="bux">`+
-      it.b.map((bu,j)=>`<div class="bu"><span>${fmtDate(bu.d)} · <b>${bu.t}</b></span>
-        <span class="num">${fmt(bu.v)} € <button class="del" onclick="delBuchung('${list}',${i},${j})" aria-label="Buchung löschen">×</button></span></div>`).join('')+
+    const negCls = (isIncome? rest>0.005 : rest<-0.005) ? ' neg' : '';
+    html+=`<div class="kstats">
+        <div><div class="l">geplant</div><div class="w">${fmt(soll)} €</div></div>
+        <div><div class="l">${isIncome?'bekommen':'ausgegeben'}</div><div class="w">${fmt(ist)} €</div></div>
+        <div class="${negCls.trim()}"><div class="l">${isIncome?'fehlt noch':'übrig'}</div><div class="w">${fmt(isIncome?Math.max(0,rest):rest)} €</div></div>
+      </div>
+      <button class="kinfo-btn" onclick="document.getElementById('inf_${list}_${i}').classList.toggle('open')">ⓘ Was gehört hier rein?</button>
+      <div class="kinfo" id="inf_${list}_${i}">${catInfo(it.name,list)}</div>
+      ${it.note?`<div class="hint" style="margin:0 0 10px 2px">${it.note}</div>`:''}
+      <div class="bux">`+
+      (it.b.length?it.b.map((bu,j)=>`<div class="bu"><input type="date" class="bdate" value="${bu.d||''}" onchange="updBuDate('${list}',${i},${j},this.value)" aria-label="Datum"><span class="bname">${bu.t}</span><span class="bval">${fmt(bu.v)} €</span><button class="bmove" onclick="askMove('${list}',${i},${j})" aria-label="in andere Kategorie verschieben">⇄</button><button class="del" onclick="delBuchung('${list}',${i},${j})" aria-label="Buchung löschen">×</button></div>`).join(''):`<div class="bu" style="color:var(--muted)">Noch nichts eingetragen.</div>`)+
       `<div class="bu-add">
         <input class="t" id="bt_${list}_${i}" placeholder="${isIncome?'Woher?':'Wo? (z. B. Lidl)'}">
         <input class="v" id="bv_${list}_${i}" type="number" inputmode="decimal" step="0.01" placeholder="€">
         <button onclick="addBuchung('${list}',${i})" aria-label="Buchung hinzufügen">+</button>
       </div></div>
-      <div class="soll-edit">Monats-Soll: <input type="number" inputmode="decimal" step="0.01" value="${it.soll}"
+      <div class="soll-edit">Monats-Budget: <input type="number" inputmode="decimal" step="0.01" value="${it.soll}"
         onchange="updSoll('${list}',${i},this.value)"> €</div>`;
   }
   return html+`</div>`;
@@ -470,15 +545,6 @@ function render(){
   document.getElementById('kpiIncome').textContent=fmt(inc.ist);
   document.getElementById('kpiOut').textContent=fmt(out);
   document.getElementById('kpiRest').textContent=fmt(inc.ist-out);
-
-  const ring=(label,su,target)=>{
-    const rest=Math.round((su.soll-su.ist)*100)/100;
-    const over=su.ist>su.soll+0.005;
-    const rv=over?`<div class="rv num bad">${fmt(-rest)} € drüber</div>`
-                 :`<div class="rv num">${su.soll>0?Math.round(su.ist/su.soll*100):0} % · Rest ${fmt(rest)}</div>`;
-    return `<div class="card" onclick="openGroup('${target}')">${ringSVG(su.ist,su.soll)}<div class="rt">${label}</div>${rv}</div>`;
-  };
-  document.getElementById('ringRow').innerHTML=ring('Fixkosten',fix,'fix')+ring('Alltag',all,'alltag')+ring('Sparen',sp,'sparen');
 
   renderBanners(inc);
   renderWealth();
@@ -545,7 +611,40 @@ function renderHist(){
 }
 
 /* ---------- Änderungen ---------- */
-function updSoll(list,i,val){ S[list][i].soll=Math.max(0,parseFloat(String(val).replace(',','.'))||0); save(); render(); }
+function updSoll(list,i,val){
+  const alt=+S[list][i].soll;
+  const neu=Math.max(0,parseFloat(String(val).replace(',','.'))||0);
+  S[list][i].soll=neu; save(); render();
+  const diff=Math.round((neu-alt)*100)/100;
+  if((list==='fix'||list==='sparen') && diff>0.005)
+    toast(`Budget +${fmt(diff)} €. Tipp: den Betrag bei „Alltag & Genuss" abziehen, damit dein Plan aufgeht.`);
+}
+function updBuDate(list,i,j,val){ if(val){ S[list][i].b[j].d=val; save(); render(); } }
+
+let pendingMove=null;
+function askMove(list,i,j){
+  pendingMove={list,i,j};
+  const bu=S[list][i].b[j];
+  document.getElementById('moveInfo').textContent=`„${bu.t}" (${fmt(bu.v)} €) verschieben nach:`;
+  let html='';
+  GROUPS.forEach(g=>S[g].forEach((it,idx)=>{
+    if(g===list&&idx===i) return;
+    html+=`<button class="btn ghost" style="text-align:left" onclick="doMove('${g}',${idx})">${it.name}</button>`;
+  }));
+  document.getElementById('moveButtons').innerHTML=html;
+  document.getElementById('dlgMove').showModal();
+}
+function doMove(tgtList,tgtIdx){
+  if(!pendingMove) return;
+  const {list,i,j}=pendingMove;
+  const bu=S[list][i].b.splice(j,1)[0];
+  S[tgtList][tgtIdx].b.push(bu);
+  S[tgtList][tgtIdx].b.sort((a,b)=>(a.d||'').localeCompare(b.d||''));
+  syncIst(S[list][i]); syncIst(S[tgtList][tgtIdx]);
+  pendingMove=null; save(); render();
+  document.getElementById('dlgMove').close();
+  toast(`„${bu.t}" → ${S[tgtList][tgtIdx].name} ✓`);
+}
 function updW(i,val){ S.vermoegen[i].wert=parseFloat(String(val).replace(',','.'))||0; save(); render(); }
 function updZ(i,val){ S.ziele[i].stand=Math.max(0,parseFloat(String(val).replace(',','.'))||0); save(); render(); }
 
